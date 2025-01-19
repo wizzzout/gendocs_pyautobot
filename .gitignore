@@ -1,3 +1,4 @@
 # Папка со скринами
 screenshots/
+*.pyc
 __pycache__/
