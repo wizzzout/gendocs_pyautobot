@@ -1,4 +1,5 @@
-data = [  {
+data = [
+  {
     'screen': './sreensTest/AllList.png',
     'click': [620, 66],
     'action': 0,

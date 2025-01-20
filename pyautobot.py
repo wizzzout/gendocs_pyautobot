@@ -2,6 +2,7 @@
 import pyautogui
 import keyboard
 import time
+import pyperclip
 
 # Screen models
 from screens import get_screen_data
@@ -10,6 +11,9 @@ screens = get_screen_data()
 # DATA
 from autodata import get_data
 data = get_data()
+
+# Moves
+from moves import *
 
 # MAIN
 def waiting():
@@ -87,4 +91,54 @@ def main(arr):
       print('Ошибка удалите часть масима сначала', i)
       break
 
-main(data)
+#main(data)
+
+dataMoves = {
+  'start': 0,
+  'end': 0,
+  'current': 0,
+  'to': 0, 
+}
+
+def moveScript():
+  itr = 0
+  pyautogui.click(580, 70)
+
+  moveEnter()
+  pyautogui.doubleClick(580, 240)
+  moveCopy()
+  dataMoves['start'] = pyperclip.paste()
+
+  moveEsc()
+
+  movePageDown()
+  movePageDown()
+  movePageDown()
+  movePageDown()
+
+  moveEnter()
+  pyautogui.doubleClick(580, 240)
+  moveCopy()
+  dataMoves['end'] = pyperclip.paste()
+
+  moveEsc()
+
+  movePageUp()
+  movePageUp()
+  movePageUp()
+  movePageUp()
+
+  itr = int(dataMoves['end']) - int(dataMoves['start'])
+  print(itr)
+
+  for i in range(itr):
+    moveEnter()
+    pyautogui.doubleClick(580, 240)
+    moveCopy()
+    dataMoves['current'] = pyperclip.paste()
+    print(dataMoves['current'])
+    moveEsc()
+    moveArrowDown()
+
+# Test Script
+moveScript()
