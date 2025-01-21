@@ -1,10 +1,16 @@
 # LIBS
 import pyautogui
 
+def changeLanguage():
+  pyautogui.hotkey('shift', 'ctrl')
+
 def moveCopy():
   pyautogui.hotkey('ctrl', 'c')
 def movePaste():
   pyautogui.hotkey('ctrl', 'v')
+def moveTab():
+  pyautogui.hotkey('tab')
+
 
 def moveArrowUp():
   pyautogui.hotkey('up')

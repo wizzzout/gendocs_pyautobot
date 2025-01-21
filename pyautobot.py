@@ -100,6 +100,8 @@ dataMoves = {
   'to': 0, 
 }
 
+dataNums = []
+
 def moveScript():
   itr = 0
   pyautogui.click(580, 70)
@@ -128,17 +130,30 @@ def moveScript():
   movePageUp()
   movePageUp()
 
-  itr = int(dataMoves['end']) - int(dataMoves['start'])
+  itr = int(dataMoves['end']) - int(dataMoves['start']) + 1
   print(itr)
 
   for i in range(itr):
     moveEnter()
+
+    keyboard.press_and_release('shift + alt')
     pyautogui.doubleClick(580, 240)
     moveCopy()
     dataMoves['current'] = pyperclip.paste()
     print(dataMoves['current'])
-    moveEsc()
+
+    pyautogui.doubleClick(580, 300)
+    moveChangeString()
+    moveCopy()
+    dataNums.append(pyperclip.paste())
+    print(pyperclip.paste())
+    keyboard.press_and_release('shift + alt')
+
+    pyautogui.click(1270, 105)
+    moveTab()
+    moveEnter()
     moveArrowDown()
+  print(dataNums)
 
 # Test Script
 moveScript()
