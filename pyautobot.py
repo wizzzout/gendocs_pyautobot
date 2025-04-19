@@ -14,6 +14,7 @@ data = get_data()
 
 # Moves
 from moves import *
+from movescript import *
 
 # MAIN
 def waiting():
@@ -30,9 +31,12 @@ def waiting():
       if itr == len(screens):
         itr = 0
 
+#copy = pyautogui.locateOnScreen('./screenshots/btn_copy.png', confidence=0.96)
+
+
 # MAIN 
 def main(arr):
-  pyautogui.click(730, 90)
+  pyautogui.click(1150, 200)
   itr = len(arr)
 
   for i in range(itr):
@@ -46,35 +50,41 @@ def main(arr):
       # Ожидание действия
       action = waiting()
       if action == 'OneDocFilling':
+        string_change = pyautogui.locateOnScreen('./screenshots/btn_change_string.png', confidence=0.96)
+        string_save = pyautogui.locateOnScreen('./screenshots/btn_save_string.png', confidence=0.96)
         print('Вижу документ: ' 'Заполняю поля, нажимаю ОК')
         # Первая дата
-        pyautogui.click(826, 290)
+        pyautogui.click(690, 280)
         keyboard.write(data[i][1])
         # Вторая дата
-        pyautogui.click(826, 360)
+        pyautogui.click(690, 340)
         keyboard.write(data[i][1])
         # Номер счет-фактуры
-        pyautogui.click(656, 360, button='right')
-        pyautogui.click(730, 570)
+        pyautogui.click(550, 340, button='right')
+        pyautogui.click(600, 512)
         keyboard.write(data[i][2])
         # Сумма
-        pyautogui.doubleClick(695, 638)
+        pyautogui.click(600, 575)
+        pyautogui.click(string_change)
         keyboard.write(data[i][0])
+        pyautogui.click(string_save)
+        
         # Ок
         time.sleep(0.2)
-        pyautogui.click(200, 1350)
+        pyautogui.click(170, 1360)
+        time.sleep(0.3)
 
         # Ожидание действия
         action = waiting()
         if action == 'OneDocCarryOut':
           # Да
-          pyautogui.click(580, 835)
+          pyautogui.click(590, 820)
 
           # Ожидание действия
           action = waiting()
           if action == 'OneDocClose':
             # Закрыть
-            pyautogui.click(445, 290)
+            pyautogui.click(370, 250)
           else:
             print('Ошибка при закрытии')
             print('Ошибка удалите часть масима сначала', i)
@@ -91,69 +101,4 @@ def main(arr):
       print('Ошибка удалите часть масима сначала', i)
       break
 
-#main(data)
-
-dataMoves = {
-  'start': 0,
-  'end': 0,
-  'current': 0,
-  'to': 0, 
-}
-
-dataNums = []
-
-def moveScript():
-  itr = 0
-  pyautogui.click(580, 70)
-
-  moveEnter()
-  pyautogui.doubleClick(580, 240)
-  moveCopy()
-  dataMoves['start'] = pyperclip.paste()
-
-  moveEsc()
-
-  movePageDown()
-  movePageDown()
-  movePageDown()
-  movePageDown()
-
-  moveEnter()
-  pyautogui.doubleClick(580, 240)
-  moveCopy()
-  dataMoves['end'] = pyperclip.paste()
-
-  moveEsc()
-
-  movePageUp()
-  movePageUp()
-  movePageUp()
-  movePageUp()
-
-  itr = int(dataMoves['end']) - int(dataMoves['start']) + 1
-  print(itr)
-
-  for i in range(itr):
-    moveEnter()
-
-    keyboard.press_and_release('shift + alt')
-    pyautogui.doubleClick(580, 240)
-    moveCopy()
-    dataMoves['current'] = pyperclip.paste()
-    print(dataMoves['current'])
-
-    pyautogui.doubleClick(580, 300)
-    moveChangeString()
-    moveCopy()
-    dataNums.append(pyperclip.paste())
-    print(pyperclip.paste())
-    keyboard.press_and_release('shift + alt')
-
-    pyautogui.click(1270, 105)
-    moveTab()
-    moveEnter()
-    moveArrowDown()
-  print(dataNums)
-
-# Test Script
-moveScript()
+main(data)

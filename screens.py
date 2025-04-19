@@ -1,6 +1,22 @@
 data = [
   {
-    'screen': './sreensTest/AllList.png',
+    'screen': './screenshots/OneDocCarryOut.png',
+    'click': [620, 66],
+    'action': 0,
+    'name': 'OneDocCarryOut',
+    'conf': 0.90
+  },
+
+  {
+    'screen': './screenshots/OneDocClose.png',
+    'click': [620, 66],
+    'action': 0,
+    'name': 'OneDocClose',
+    'conf': 0.95
+  },
+  
+  {
+    'screen': './screenshots/AllList.png',
     'click': [620, 66],
     'action': 0,
     'name': 'AllList#1',
@@ -8,7 +24,7 @@ data = [
   },
 
   {
-    'screen': './sreensTest/AllList2.png',
+    'screen': './screenshots/AllList2.png',
     'click': [620, 66],
     'action': 0,
     'name': 'AllList#2',
@@ -16,26 +32,10 @@ data = [
   },
 
   {
-    'screen': './sreensTest/OneDoc.png',
+    'screen': './screenshots/OneDoc2.png',
     'click': [200, 66],
     'action': 1,
     'name': 'OneDocFilling',
-    'conf': 0.95
-  },
-
-  {
-    'screen': './sreensTest/OneDocCarryOut.png',
-    'click': [620, 66],
-    'action': 0,
-    'name': 'OneDocCarryOut',
-    'conf': 0.92
-  },
-
-  {
-    'screen': './sreensTest/OneDocClose.png',
-    'click': [620, 66],
-    'action': 0,
-    'name': 'OneDocClose',
     'conf': 0.95
   },
 ]
